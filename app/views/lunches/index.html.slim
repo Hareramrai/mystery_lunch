@@ -1,0 +1,7 @@
+.row
+  .col
+    h2 Lunches
+    
+    = render 'lunches', lunches: @lunches
+
+= link_to 'New Lunch', new_lunch_path, class: "btn btn-primary"

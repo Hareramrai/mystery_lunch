@@ -1,0 +1,23 @@
+table.table.table-striped
+  thead
+    tr
+      th[scope="col"]
+        | #
+      th[scope="col"]
+        | Name
+      th[scope="col"]
+        | Manager
+      th[scope="col"]
+        | Action
+  tbody
+    - departments.each do |department|
+      tr
+        th.align-middle[scope="row"]
+          = department.id
+        td.align-middle
+          = department.name
+        td.align-middle
+          = department.manager_name
+        td.align-middle
+          = link_to 'Edit', edit_department_path(department), class: 'mr-2'
+          = link_to 'Destroy', department, data: { confirm: 'Are you sure?' }, method: :delete

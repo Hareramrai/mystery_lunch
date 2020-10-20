@@ -1,0 +1,7 @@
+.row
+  .col
+    h2 Departments
+    
+    = render 'departments', departments: @departments
+
+= link_to 'New Department', new_department_path, class: "btn btn-primary"

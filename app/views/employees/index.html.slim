@@ -1,0 +1,9 @@
+.row
+  .col
+    h2 Employees
+    
+    = render 'employees', employees: @employees
+
+= paginate @employees
+
+= link_to 'New Employee', new_employee_path, class: "btn btn-primary"

@@ -1,0 +1,8 @@
+
+h2.mb-5 = "Mystery Partners for #{@partner_list_filter.lunch.lunch_date}"
+= render 'index_filter', list_filter: @partner_list_filter
+- @partner_list_filter.filtered_results.each do |lunch_team|
+  .card.mb-5.col
+    .card-body.shadow-lg.p-3.bg-white.rounded.row
+      - lunch_team.employees.each do |emmployee|
+        = render "employee_card", employee: emmployee

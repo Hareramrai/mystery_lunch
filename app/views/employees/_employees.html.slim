@@ -1,0 +1,23 @@
+table.table.table-striped
+  thead
+    tr
+      th[scope="col"]
+        | #
+      th[scope="col"]
+        | Name
+      th[scope="col"]
+        | Department
+      th[scope="col"]
+        | Action
+  tbody
+    - employees.each do |employee|
+      tr
+        th.align-middle[scope="row"]
+          = link_to employee.id, employee
+        td.align-middle
+          = employee.name
+        td.align-middle
+          = employee.department_name
+        td.align-middle
+          = link_to 'Edit', edit_employee_path(employee), class: 'mr-2'
+          = link_to 'Destroy', employee, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,0 +1,24 @@
+= simple_form_for(@employee) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :email, as: 'email'
+  
+  .form-inputs
+    = f.input :password, as: 'password'
+  
+  .form-inputs
+    = f.input :first_name
+  
+  .form-inputs
+    = f.input :last_name
+
+  .form-inputs
+    = f.association :department, collection: Department.all, prompt: "Choose a Department"
+
+  .form-inputs
+    = f.input :avatar
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

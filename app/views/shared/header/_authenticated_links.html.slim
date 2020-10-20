@@ -1,0 +1,7 @@
+li.nav-item.dropdown
+  a.nav-link.dropdown-toggle href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+    = current_user.name
+  ul.dropdown-menu.dropdown-menu-right.font-size-sm.font-weight-bold aria-labelledby="navbarDropdown"
+    = link_to 'My Mystery Partners', "", class: 'dropdown-item'
+    = link_to 'Account', edit_user_registration_path(current_user), class: 'dropdown-item'
+    = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item'

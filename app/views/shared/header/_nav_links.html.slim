@@ -1,0 +1,14 @@
+ul.nav.navbar-nav
+  li.nav-item
+    = link_to 'Home', root_path, class: 'nav-link'
+  li.nav-item
+    = link_to 'Lunches', lunches_path, class: 'nav-link'
+  li.nav-item
+    = link_to 'Employees', employees_path, class: 'nav-link'
+  li.nav-item
+    = link_to 'Departments', departments_path, class: 'nav-link'
+  - if user_signed_in?
+    = render 'shared/header/authenticated_links'
+  - else
+    li.nav-item
+      = link_to 'Sign In', new_user_session_path, class: 'nav-link'

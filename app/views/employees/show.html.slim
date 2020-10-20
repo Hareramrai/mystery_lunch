@@ -1,0 +1,7 @@
+h2.mb-5 = "Mystery Partners of #{@employee.name}"
+
+- @employee.lunch_teams.each do |lunch_team|
+  .card.mb-5.col
+    .card-body.shadow-lg.p-3.bg-white.rounded.row
+      - lunch_team.employees.each do |emmployee|
+        = render "mystery_partners/employee_card", employee: emmployee

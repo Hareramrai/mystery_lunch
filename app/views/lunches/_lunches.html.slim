@@ -1,0 +1,22 @@
+table.table.table-striped
+  thead
+    tr
+      th[scope="col"]
+        | #
+      th[scope="col"]
+        | Title
+      th[scope="col"]
+        | On Date
+      th[scope="col"]
+        | Action
+  tbody
+    - lunches.each do |lunch|
+      tr
+        th.align-middle[scope="row"]
+          = lunch.id
+        td.align-middle
+          = lunch.title
+        td.align-middle
+          = lunch.lunch_date
+        td.align-middle
+          = link_to 'Show', mystery_partners_path(lunch_id: lunch.id)

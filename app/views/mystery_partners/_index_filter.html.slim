@@ -1,0 +1,20 @@
+.row.mb-5
+  .col
+    span.dropdown
+      a.dropdown-toggle.btn.btn-primary aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+        - if list_filter.department_selected?
+          = list_filter.department.name
+        - else
+          = t("mystery_partners.index.filters.department.all")
+      .dropdown-menu
+        = link_to t("mystery_partners.index.filters.department.all"), mystery_partners_path, class: "dropdown-item"
+        - list_filter.filterable_departments.each do |department|
+          - link = mystery_partners_path(list_filter.to_params(department_id: department.id))
+          = link_to department.name, link, class: "dropdown-item  #{ "active" if list_filter.department&.id == department.id }" 
+    
+    span.dropdown.ml-3
+      a.dropdown-toggle.btn.btn-primary aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
+        = list_filter.lunch.title
+      .dropdown-menu
+        - list_filter.filterable_lunches.each do |lunch|
+          = link_to lunch.title, mystery_partners_path(list_filter.to_params(lunch_id: lunch.id)), class: "dropdown-item  #{ "active" if list_filter.lunch.id == lunch.id }"
