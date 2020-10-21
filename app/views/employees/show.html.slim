@@ -1,5 +1,7 @@
 h2.mb-5 = "Mystery Partners of #{@employee.name}"
 
+= link_to "Swtich Partner", exchange_employee_path(@employee), class: "btn btn-primary mb-3" if current_user
+
 - @employee.lunch_teams.each do |lunch_team|
   .card.mb-5.col
     .card-body.shadow-lg.p-3.bg-white.rounded.row

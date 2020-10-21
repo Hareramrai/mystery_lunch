@@ -2,7 +2,7 @@
 
 class EmployeesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
-  before_action :set_employee, only: [:edit, :update, :destroy]
+  before_action :set_employee, only: [:edit, :update, :destroy, :exchange]
 
   def index
     @employees = Employee.page params[:page]
@@ -46,6 +46,19 @@ class EmployeesController < ApplicationController
     Mystery::DeleteEmployeeFromLunchService.call(employee: @employee)
 
     redirect_to employees_url, notice: "Employee was successfully destroyed."
+  end
+
+  def exchange
+    exchange_result = ExchangeEmployeePartnerService.call(
+      current_employee: current_user,
+      employee: @employee
+    )
+
+    if exchange_result
+      redirect_to @employee, notice: "Exchange was successfully."
+    else
+      redirect_to @employee, alert: "Exchange wasn't allowed."
+    end
   end
 
   private

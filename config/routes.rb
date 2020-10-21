@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :departments
   resources :mystery_partners, only: [:index]
   resources :lunches, only: [:index, :new, :create]
-  resources :employees
+  resources :employees do
+    member do
+      get :exchange
+    end
+  end
 
   root to: "mystery_partners#index"
 end
