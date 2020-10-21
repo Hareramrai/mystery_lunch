@@ -28,7 +28,7 @@ Application deployed at https://mysterylunch.herokuapp.com/ .
 
 - Database creation
 
-  `docker-compose run web rake setup`
+  `docker-compose run web rake db:setup`
 
 - Start the Application
   `docker-compose up`
