@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    image: web
+    volumes:
+      - .:/usr/src/app
+    environment:
+      RAILS_ENV: development
+      DB_HOST: pg
+      DB_USER: postgres
+      DB_PASS: example
+      DB_NAME: mystery_lunch
+      REDIS_URL_SIDEKIQ: redis://redis:6379/1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - pg
+      - redis
+  pg:
+    image: postgres:11-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+  redis:
+    image: redis:5.0.5-alpine
+    command: redis-server
+    volumes:
+      - redis-data:/data
+  sidekiq:
+    build: .
+    image: sidekiq
+    command: bundle exec sidekiq
+    environment:
+      RAILS_ENV: development
+      DB_HOST: pg
+      DB_USER: postgres
+      DB_PASS: example
+      DB_NAME: mystery_lunch
+      REDIS_URL_SIDEKIQ: redis://redis:6379/1
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - pg
+      - redis
+volumes:
+  pg-data:
+  redis-data:

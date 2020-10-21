@@ -11,6 +11,8 @@ class Mystery::SchedulerService < ApplicationService
     setup
     find_matchings
     handle_failed_to_match_employees
+
+    Mystery::CreateMatchesService.call(lunch: lunch, lunch_teams: @lunch_teams)
   end
 
   private
@@ -65,7 +67,5 @@ class Mystery::SchedulerService < ApplicationService
       @lunch_teams = Mystery::FindPartnerInTeamService
                      .call(lunch_teams: @lunch_teams,
                            employees: @failed_to_find_match_employees)
-
-      Mystery::CreateMatchesService.call(lunch: lunch, lunch_teams: @lunch_teams)
     end
 end

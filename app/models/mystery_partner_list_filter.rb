@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MysteryPartnerListFilter
-  attr_reader :lunch, :department_id
+  attr_reader :department_id
 
   def initialize(filter_params:)
     @lunch = Lunch.find_by(id: filter_params[:lunch_id]) || Lunch.latest
@@ -22,6 +22,10 @@ class MysteryPartnerListFilter
 
   def filterable_lunches
     @filterable_lunches ||= Lunch.all
+  end
+
+  def lunch
+    @lunch.presence
   end
 
   def filtered_results
